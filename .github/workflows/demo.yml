@@ -28,11 +28,19 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: distination files
+          name: distination-files
           path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: distination-files
+      - name: Ouput contents
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
+
+  
